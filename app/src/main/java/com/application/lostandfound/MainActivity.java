@@ -1,21 +1,12 @@
 package com.application.lostandfound;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Database;
-import androidx.room.Room;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.Date;
-import java.util.List;
+import com.application.lostandfound.DataAccessObjects.FoundDataAccessObject;
+import com.application.lostandfound.DataAccessObjects.LostDataAccessObject;
+import com.application.lostandfound.Databases.LostAndFoundDatabase;
 
 /**
  * Some notes for the app
@@ -41,33 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         foundDao = LostAndFoundDatabase.getDatabase(this).foundDao();
         lostDao = LostAndFoundDatabase.getDatabase(this).lostDao();
-
-        LinearLayout layout = findViewById(R.id.linearLayout2);
-        FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
-
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                counter++;
-
-                LostAndFoundDatabase.getDatabase(view.getContext()).databaseWriteExecutor.execute(()->{
-
-                    List<LostDataModel> lostDataModels = lostDao.getAllLostItems();
-
-                    for (int i = 0; i < lostDataModels.size(); i++) {
-
-                        Log.d("Test", lostDataModels.get(i).name);
-                    }
-
-                });
-
-
-
-            }
-        });
 
 
     }

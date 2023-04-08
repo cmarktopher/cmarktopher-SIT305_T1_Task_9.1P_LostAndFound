@@ -1,9 +1,11 @@
-package com.application.lostandfound;
+package com.application.lostandfound.DataAccessObjects;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+
+import com.application.lostandfound.Models.FoundDataModel;
 
 import java.util.List;
 

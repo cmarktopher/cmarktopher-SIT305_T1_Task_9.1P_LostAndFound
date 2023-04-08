@@ -1,10 +1,16 @@
-package com.application.lostandfound;
+package com.application.lostandfound.Databases;
 
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.application.lostandfound.DataAccessObjects.FoundDataAccessObject;
+import com.application.lostandfound.DataAccessObjects.LostDataAccessObject;
+import com.application.lostandfound.Models.FoundDataModel;
+import com.application.lostandfound.Models.LostDataModel;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,7 +18,7 @@ import java.util.concurrent.Executors;
 public abstract class LostAndFoundDatabase extends RoomDatabase {
 
     public abstract LostDataAccessObject lostDao();
-    public abstract  FoundDataAccessObject foundDao();
+    public abstract FoundDataAccessObject foundDao();
 
     // The docs mention that it is a good idea to use the singleton pattern
     // to get the database if we are working in a single process (which we are)

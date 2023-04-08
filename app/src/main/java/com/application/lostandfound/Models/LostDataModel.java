@@ -1,4 +1,4 @@
-package com.application.lostandfound;
+package com.application.lostandfound.Models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
