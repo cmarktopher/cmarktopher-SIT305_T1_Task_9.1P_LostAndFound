@@ -6,10 +6,14 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity
-public class LostAndFoundDataModel {
+/**
+ * See LostDataModel for reasoning as to why there is two data models.
+ */
 
-    @PrimaryKey
+@Entity(tableName = "found_table")
+public class FoundDataModel {
+
+    @PrimaryKey(autoGenerate = true)
     public int uid;
 
     @ColumnInfo(name = "name")

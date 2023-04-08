@@ -1,6 +1,7 @@
 package com.application.lostandfound;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.os.Bundle;
 
@@ -12,9 +13,19 @@ import android.os.Bundle;
  */
 public class MainActivity extends AppCompatActivity {
 
+    // Cache the data access objects so I don't have to keep getting them from the database
+    private FoundDataAccessObject foundDao;
+    private LostDataAccessObject lostDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+        foundDao = LostAndFoundDatabase.getDatabase(this).foundDao();
+        lostDao = LostAndFoundDatabase.getDatabase(this).lostDao();
+
     }
 }
