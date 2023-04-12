@@ -4,26 +4,22 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 /**
  * Data model
  * This wil represent entries in the table.
  * So, from my understanding, the way Room works is that each entity will represent a singular table.
- * Now, the issue here is we have a lost section and a found section.
- * So, I have a choice now of either:
- *      1. Introducing a variable to indicate if it is a lost or found entry...or....
- *      2. Have two separate tables which means I define two data models with the exact same properties.
- * I think option 2 is probably the best option.
- * Also, this will be good if I need to introduce unique variables to the respective data model.
+ * Initially, I thought it be a good idea to use two tables, one for lost and one for found.
+ * However, since the fields are exactly the same, I figured it be easier to just add in an item state field to present if the item is lost or found.
  */
 
-@Entity(tableName = "lost_table")
-public class LostDataModel {
+@Entity(tableName = "lost_found_table")
+public class LostFoundDataModel {
 
     @PrimaryKey(autoGenerate = true)
     public int uid;
+
+    @ColumnInfo(name = "item_state")
+    public String itemState;
 
     @ColumnInfo(name = "name")
     public String name;
@@ -40,7 +36,8 @@ public class LostDataModel {
     @ColumnInfo(name = "location")
     public String location;
 
-    public LostDataModel(String name, String phoneNumber, String description, String date, String location) {
+    public LostFoundDataModel(String itemState, String name, String phoneNumber, String description, String date, String location) {
+        this.itemState = itemState;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.description = description;

@@ -78,8 +78,8 @@
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Enter your name"
-                android:textColor="#33FFFFFF"
+                android:text="Key"
+                android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
 
@@ -103,8 +103,8 @@
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:inputType="phone"
-                android:text="Enter your phone number"
-                android:textColor="#33FFFFFF"
+                android:text="123456789"
+                android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
 
@@ -128,8 +128,8 @@
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Enter a description"
-                android:textColor="#33FFFFFF"
+                android:text="I lost my key"
+                android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
 
@@ -151,9 +151,11 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
+                android:hint="Enter a date"
                 android:inputType="date"
-                android:text="@string/enter_a_description"
-                android:textColor="#33FFFFFF"
+                android:text="23/02/2023"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp" />
 
             <TextView
@@ -175,8 +177,8 @@
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Enter a location"
-                android:textColor="#33FFFFFF"
+                android:text="My house"
+                android:textColor="#FFFFFF"
                 android:textSize="15sp" />
 
             <com.google.android.material.button.MaterialButton

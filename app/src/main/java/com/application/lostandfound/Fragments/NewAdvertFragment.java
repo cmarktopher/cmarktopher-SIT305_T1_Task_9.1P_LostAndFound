@@ -2,32 +2,25 @@ package com.application.lostandfound.Fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import com.application.lostandfound.Databases.LostAndFoundDatabase;
-import com.application.lostandfound.Models.FoundDataModel;
-import com.application.lostandfound.Models.LostDataModel;
-import com.application.lostandfound.R;
+import com.application.lostandfound.Models.LostFoundDataModel;
+import com.application.lostandfound.ViewModels.LostFoundViewModel;
 import com.application.lostandfound.databinding.FragmentNewAdvertBinding;
 
-/**
- * Just a note, since the inputs will be exactly the same between lost and found (for now at least)
- * I will just have the post type as a toggle and use conditional logic to choose which table to send the data to.
- */
 public class NewAdvertFragment extends Fragment {
 
-    // Enum to represent the state of the advert (lost or found)
-    private enum LostAndFoundToggleState {
-        LOST,
-        FOUND
-    }
-
-    private LostAndFoundToggleState currentLostAndFoundToggleState = LostAndFoundToggleState.LOST;
+    // Keep track of the the advert being for a lost or found item
+    String itemState = "Lost";
 
     public NewAdvertFragment() {
 
@@ -54,78 +47,51 @@ public class NewAdvertFragment extends Fragment {
         FragmentNewAdvertBinding binding = FragmentNewAdvertBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        // Handle the toggles
+        // Handle the lost toggle
         binding.lostRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                currentLostAndFoundToggleState = LostAndFoundToggleState.LOST;
+                itemState = "Lost";
                 binding.lostRadioButton.setChecked(true);
                 binding.foundRadioButton.setChecked(false);
             }
         });
 
+        // Handle the found toggle
         binding.foundRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                currentLostAndFoundToggleState = LostAndFoundToggleState.FOUND;
+                itemState = "Found";
                 binding.lostRadioButton.setChecked(false);
                 binding.foundRadioButton.setChecked(true);
             }
         });
 
-        // Set an on click listener and grab all inputs and create the respective class based on the toggle
+        // Set an on click listener and grab all inputs and the lost/found state and create the respective class based on the toggle
         binding.saveNewAdvertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                switch (currentLostAndFoundToggleState){
+                // Create a new lost item
+                LostFoundDataModel newLostItem = new LostFoundDataModel(
+                        itemState,
+                        binding.nameInputEditTextView.getText().toString(),
+                        binding.phoneInputEditTextView.getText().toString(),
+                        binding.descriptionInputEditTextView.getText().toString(),
+                        binding.dateInputEditTextView.getText().toString(),
+                        binding.locationInputEditTextView.getText().toString()
+                );
 
-                    // If the current state is lost, then insert into the lost_table
-                    case LOST:
+                // Now, we need to send this information to the database
+                // We can grab the view model via the view model provider and make our insert via that
+                LostFoundViewModel lostFoundViewModel = new ViewModelProvider(requireActivity()).get(LostFoundViewModel.class);
+                lostFoundViewModel.insert(newLostItem);
 
-                        // Create a new lost data model instance
-                        LostDataModel newLostItem = new LostDataModel(
-                                binding.nameInputEditTextView.toString(),
-                                binding.phoneInputEditTextView.toString(),
-                                binding.descriptionInputEditTextView.toString(),
-                                binding.dateInputEditTextView.toString(),
-                                binding.locationInputEditTextView.toString()
-                        );
-
-                        // Use the WriteExecutor to execute a database command
-                        LostAndFoundDatabase.databaseWriteExecutor.execute(()->{
-
-                            LostAndFoundDatabase.getDatabase(getContext()).lostDao().insertNewLostItem(newLostItem);
-
-                        });
-
-                        break;
-
-                    // If the current state is found, then insert into the found_table
-                    case FOUND:
-
-                        // Create a new lost data model instance
-                        FoundDataModel foundDataModel = new FoundDataModel(
-                                binding.nameInputEditTextView.toString(),
-                                binding.phoneInputEditTextView.toString(),
-                                binding.descriptionInputEditTextView.toString(),
-                                binding.dateInputEditTextView.toString(),
-                                binding.locationInputEditTextView.toString()
-                        );
-
-                        // Use the WriteExecutor to execute a database command
-                        LostAndFoundDatabase.databaseWriteExecutor.execute(()->{
-
-                            LostAndFoundDatabase.getDatabase(getContext()).foundDao().insertNewFoundItem(foundDataModel);
-
-                        });
-
-
-                        break;
-                }
-
+                // I'll make it so that when you create a new advert, we go back to the home page
+                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                fragmentManager.popBackStack();
             }
         });
         return view;

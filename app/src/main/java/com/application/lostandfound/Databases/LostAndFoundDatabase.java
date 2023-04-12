@@ -2,14 +2,14 @@ package com.application.lostandfound.Databases;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.application.lostandfound.DataAccessObjects.FoundDataAccessObject;
-import com.application.lostandfound.DataAccessObjects.LostDataAccessObject;
-import com.application.lostandfound.Models.FoundDataModel;
-import com.application.lostandfound.Models.LostDataModel;
+import com.application.lostandfound.DataAccessObjects.LostFoundDataAccessObject;
+import com.application.lostandfound.Models.LostFoundDataModel;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,21 +24,20 @@ import java.util.concurrent.Executors;
  */
 
 
-@Database(entities = {LostDataModel.class, FoundDataModel.class}, version = 1)
+@Database(entities = {LostFoundDataModel.class}, version = 2)
 public abstract class LostAndFoundDatabase extends RoomDatabase {
 
     // Keep track of the single instance of this database
     private static volatile LostAndFoundDatabase INSTANCE;
 
     // Our DAO containing our queries
-    public abstract LostDataAccessObject lostDao();
-    public abstract FoundDataAccessObject foundDao();
+    public abstract LostFoundDataAccessObject lostDao();
 
     // Thread related - to my understanding, this allows database operations to occur on background threads
-    // We will need the ExecutorService to execute the database queries.
-    private final int NUMBER_OF_THREADS = 4;
+    // We will need the ExecutorService to execute the database inserts.
+    private static final int NUMBER_OF_THREADS = 4;
 
-    private ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     // This is how we handle the singleton to ensure we only get back only one instance of the LostAndFound database.
     public static LostAndFoundDatabase getDatabase(final Context context) {
@@ -51,9 +50,5 @@ public abstract class LostAndFoundDatabase extends RoomDatabase {
             }
         }
         return INSTANCE;
-    }
-
-    public ExecutorService getDatabaseWriteExecutor() {
-        return databaseWriteExecutor;
     }
 }

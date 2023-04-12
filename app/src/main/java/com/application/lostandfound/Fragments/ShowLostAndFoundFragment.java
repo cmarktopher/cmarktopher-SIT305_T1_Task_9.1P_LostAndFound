@@ -3,24 +3,32 @@ package com.application.lostandfound.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.application.lostandfound.Databases.LostAndFoundDatabase;
-import com.application.lostandfound.Models.FoundDataModel;
-import com.application.lostandfound.Models.LostDataModel;
+import com.application.lostandfound.Models.LostFoundDataModel;
 import com.application.lostandfound.R;
+import com.application.lostandfound.RecyclerViews.LostAndFoundAdapter;
+import com.application.lostandfound.ViewModels.LostFoundViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class ShowLostAndFoundFragment extends Fragment {
 
-    private List<LostDataModel> lostItems;
-    private List<FoundDataModel> foundItems;
+    // UI elements
+    RecyclerView itemLostAndFoundRecycler;
+
+    private List<LostFoundDataModel> currentLostItems = new ArrayList<LostFoundDataModel>();
 
     public ShowLostAndFoundFragment() {
         // Required empty public constructor
@@ -35,6 +43,7 @@ public class ShowLostAndFoundFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -44,21 +53,20 @@ public class ShowLostAndFoundFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_show_lost_and_found, container, false);
 
         // Get UI elements
-        LinearLayout itemLostAndFoundContainer = view.findViewById(R.id.itemLostAndFoundContainer);
+        itemLostAndFoundRecycler = view.findViewById(R.id.itemRecyclerView);
 
-        // We need to reach into the database, and get all lost and found items.
-        // The plan is to create cards (with recycler view) to display the name of the item.
-        // It would make sense to just query the name column.
-        // However, we need to be able to click the card and display information in a separate fragment.
-        // So, the easiest option I can think off at the moment, is to grab the entire data model and pass that into the card.
+        // Create our recycler adapter and set it to our recycler view
+        LostAndFoundAdapter lostAndFoundAdapter = new LostAndFoundAdapter(getContext(), currentLostItems);
+        itemLostAndFoundRecycler.setAdapter(lostAndFoundAdapter);
+        itemLostAndFoundRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-        LostAndFoundDatabase.getDatabase(getContext()).getDatabaseWriteExecutor().execute(() -> {
-
-            lostItems = LostAndFoundDatabase.getDatabase(getContext()).lostDao().getAllLostItems();
-            foundItems = LostAndFoundDatabase.getDatabase(getContext()).foundDao().getAllFoundItems();
-
+        // We need to go into our ViewModel and bind to the LiveView
+        // Since we only need to populate the recycle view once
+        LostFoundViewModel lostFoundViewModel = new ViewModelProvider(requireActivity()).get(LostFoundViewModel.class);
+        lostFoundViewModel.getAllLostAndFoundItems().observe(getViewLifecycleOwner(), items -> {
+            currentLostItems.addAll(items);
+            lostAndFoundAdapter.notifyDataSetChanged();
         });
-
 
         return view;
     }
