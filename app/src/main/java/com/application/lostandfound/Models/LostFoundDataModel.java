@@ -9,7 +9,8 @@ import androidx.room.PrimaryKey;
  * This wil represent entries in the table.
  * So, from my understanding, the way Room works is that each entity will represent a singular table.
  * Initially, I thought it be a good idea to use two tables, one for lost and one for found.
- * However, since the fields are exactly the same, I figured it be easier to just add in an item state field to present if the item is lost or found.
+ * However, since the fields are exactly the same, I figured it be easier to just add in an item state field representing if the item is lost or found.
+ * For simplicity, I've kept everything as string entries.
  */
 
 @Entity(tableName = "lost_found_table")
@@ -17,7 +18,6 @@ public class LostFoundDataModel {
 
     @PrimaryKey(autoGenerate = true)
     public int uid;
-
     @ColumnInfo(name = "item_state")
     public String itemState;
 

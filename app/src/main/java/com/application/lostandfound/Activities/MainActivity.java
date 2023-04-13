@@ -1,8 +1,14 @@
 package com.application.lostandfound.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+import androidx.fragment.app.FragmentManager;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import com.application.lostandfound.Fragments.HomeFragment;
+import com.application.lostandfound.Fragments.ShowLostAndFoundFragment;
 import com.application.lostandfound.R;
 
 /**
@@ -21,7 +27,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Will be using a fragment to add in the home/entry page.
-        // This should appear by default without me adding anything here.
+        // By default, the HomeFragment should appear.
+        // However, while I doubt this will be an issue, I'll perform the transaction here just in case.
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out)
+                .setReorderingAllowed(true)
+                .replace(R.id.coreFragmentContainer, HomeFragment.newInstance(), null)
+                .commit();
     }
 }

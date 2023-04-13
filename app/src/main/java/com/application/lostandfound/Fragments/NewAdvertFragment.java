@@ -17,6 +17,9 @@ import com.application.lostandfound.Models.LostFoundDataModel;
 import com.application.lostandfound.ViewModels.LostFoundViewModel;
 import com.application.lostandfound.databinding.FragmentNewAdvertBinding;
 
+/**
+ * This fragment will be for users to fill in a form for a new lost/found item.
+ */
 public class NewAdvertFragment extends Fragment {
 
     // Keep track of the the advert being for a lost or found item
@@ -28,6 +31,7 @@ public class NewAdvertFragment extends Fragment {
     }
 
     public static NewAdvertFragment newInstance() {
+
         NewAdvertFragment fragment = new NewAdvertFragment();
         return fragment;
     }
@@ -69,12 +73,26 @@ public class NewAdvertFragment extends Fragment {
             }
         });
 
-        // Set an on click listener and grab all inputs and the lost/found state and create the respective class based on the toggle
+        // Bind to back button
+        binding.newAdvertBackButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                fragmentManager.popBackStack();
+
+            }
+        });
+
+        // Set an on click listener when save is pressed
+        // This will grab all inputs and the lost/found state and create the respective data class to be saved (for this task, it will be in a local database)
         binding.saveNewAdvertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 // Create a new lost item
+                // TODO If I ever improve on this task, I think better handling of inputs and validation needs to be done.
                 LostFoundDataModel newLostItem = new LostFoundDataModel(
                         itemState,
                         binding.nameInputEditTextView.getText().toString(),
@@ -94,6 +112,7 @@ public class NewAdvertFragment extends Fragment {
                 fragmentManager.popBackStack();
             }
         });
+
         return view;
     }
 }

@@ -16,7 +16,7 @@ import com.application.lostandfound.R;
 import com.application.lostandfound.RecyclerViews.LostAndFoundAdapter;
 
 /**
- * This fragment represents the entry point to the application.
+ * This fragment represents the entry point to the application for the user.
  */
 public class HomeFragment extends Fragment {
 
@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment {
 
                 FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
                 fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out)
                         .setReorderingAllowed(true)
                         .replace(R.id.coreFragmentContainer, NewAdvertFragment.newInstance(), null)
                         .addToBackStack(null)
@@ -68,13 +69,13 @@ public class HomeFragment extends Fragment {
 
                 FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
                 fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out)
                         .setReorderingAllowed(true)
                         .replace(R.id.coreFragmentContainer, ShowLostAndFoundFragment.newInstance(), null)
                         .addToBackStack(null)
                         .commit();
             }
         });
-
 
         // Inflate the layout for this fragment
         return view;

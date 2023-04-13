@@ -34,14 +34,14 @@ public abstract class LostAndFoundDatabase extends RoomDatabase {
     public abstract LostFoundDataAccessObject lostDao();
 
     // Thread related - to my understanding, this allows database operations to occur on background threads
-    // We will need the ExecutorService to execute the database inserts.
+    // We will need the ExecutorService to execute the database inserts and deletes.
     private static final int NUMBER_OF_THREADS = 4;
-
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     // This is how we handle the singleton to ensure we only get back only one instance of the LostAndFound database.
     public static LostAndFoundDatabase getDatabase(final Context context) {
 
+        // Basically, if there is no instance of the database, then we create one and assign it to INSTANCE
         if (INSTANCE == null){
             synchronized (LostAndFoundDatabase.class) {
                 if (INSTANCE == null) {
@@ -49,6 +49,7 @@ public abstract class LostAndFoundDatabase extends RoomDatabase {
                 }
             }
         }
+
         return INSTANCE;
     }
 }

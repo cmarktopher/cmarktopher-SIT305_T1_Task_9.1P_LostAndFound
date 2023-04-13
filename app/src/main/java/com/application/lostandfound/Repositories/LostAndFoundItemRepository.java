@@ -11,11 +11,12 @@ import com.application.lostandfound.ViewModels.LostFoundViewModel;
 import java.util.List;
 
 /**
- * Me adding this class was due to me following the guide indicated the main activity.
+ * Me adding this class was due to me following the guide indicated in the main activity.
  * However, I understand why a repository is important.
  * By using this, we can easily swap out implementations for data access.
  * Here, we have a repository that interacts with a local database.
- * While outside of the scope of this task, we can create and swap this out with a new repository and have that interact with a server based database
+ * While outside of the scope of this task, we can create and swap this out with a new repository and have that interact with a server based database for example.
+ * Since we are using a view model, that class would then reference the respective repository we want to use.
  */
 public class LostAndFoundItemRepository {
 
@@ -36,6 +37,13 @@ public class LostAndFoundItemRepository {
 
         LostAndFoundDatabase.databaseWriteExecutor.execute(() -> {
             lostDataAccessObject.insertNewLostItem(newItem);
+        });
+    }
+
+    public void delete(LostFoundDataModel itemToDelete){
+
+        LostAndFoundDatabase.databaseWriteExecutor.execute(() -> {
+            lostDataAccessObject.deleteLostItem(itemToDelete.uid);
         });
     }
 

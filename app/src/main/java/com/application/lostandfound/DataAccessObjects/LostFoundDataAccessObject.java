@@ -9,7 +9,9 @@ import com.application.lostandfound.Models.LostFoundDataModel;
 
 import java.util.List;
 
-// This will hold all our SQL queries for the lost table
+/**
+ * This interface will hold all our SQL queries for the lost and found table.
+ */
 
 @Dao
 public interface LostFoundDataAccessObject {
@@ -17,12 +19,9 @@ public interface LostFoundDataAccessObject {
     @Query("SELECT * FROM lost_found_table")
     LiveData<List<LostFoundDataModel>> getAllLostItems();
 
-    @Query("SELECT * FROM lost_found_table WHERE name = :name")
-    LostFoundDataModel getLostItemByName(String name);
-
     @Insert
     void insertNewLostItem(LostFoundDataModel newLostItem);
 
-    @Query("DELETE FROM lost_found_table WHERE name == :name")
-    void deleteLostItem(String name);
+    @Query("DELETE FROM lost_found_table WHERE uid == :id")
+    void deleteLostItem(Integer id);
 }

@@ -11,20 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/newAdvertBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/material_dynamic_neutral_variant40"
+            android:text="Back"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="396dp"
+            android:layout_height="619dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/guideline4">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView"
@@ -32,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="100dp"
+                    android:layout_marginEnd="80dp"
                     android:text="@string/post_type"
                     android:textColor="@color/material_dynamic_neutral95"
                     android:textSize="20sp" />
@@ -77,9 +93,11 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
+                android:hint="Enter name of item"
                 android:inputType="textPersonName"
-                android:text="Key"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF"
+                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
 
@@ -102,9 +120,11 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
+                android:hint="Enter phone number"
                 android:inputType="phone"
-                android:text="123456789"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF"
+                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
 
@@ -127,9 +147,11 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
+                android:hint="Enter description of your item"
                 android:inputType="text"
-                android:text="I lost my key"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF"
+                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
 
@@ -153,7 +175,7 @@
                 android:ems="10"
                 android:hint="Enter a date"
                 android:inputType="date"
-                android:text="23/02/2023"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp" />
@@ -176,18 +198,20 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
+                android:hint="Enter a date"
                 android:inputType="text"
-                android:text="My house"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF"
+                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/saveNewAdvertButton"
                 android:layout_width="250dp"
                 android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_gravity="center_horizontal"
                 android:backgroundTint="@color/material_dynamic_neutral_variant40"
                 android:text="SAVE"
                 android:textSize="30sp"
@@ -195,5 +219,12 @@
                 tools:ignore="VisualLintButtonSize" />
 
         </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="80dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
