@@ -4,31 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_neutral_variant20"
     tools:context=".Fragments.NewAdvertFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/newAdvertBackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/material_dynamic_neutral_variant40"
-            android:text="Back"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:cornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <LinearLayout
-            android:layout_width="396dp"
+            android:layout_width="400dp"
             android:layout_height="619dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +33,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="80dp"
                     android:text="@string/post_type"
-                    android:textColor="@color/material_dynamic_neutral95"
                     android:textSize="20sp" />
 
                 <RadioButton
@@ -60,7 +42,6 @@
                     android:layout_margin="10dp"
                     android:checked="true"
                     android:text="Lost"
-                    android:textColor="@color/material_dynamic_neutral95"
                     android:textSize="20sp"
                     tools:ignore="HardcodedText" />
 
@@ -70,7 +51,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="@string/found"
-                    android:textColor="@color/material_dynamic_neutral95"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -81,7 +61,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="Name:"
-                android:textColor="@color/material_dynamic_neutral95"
                 android:textSize="20sp"
                 tools:ignore="HardcodedText" />
 
@@ -96,8 +75,6 @@
                 android:hint="Enter name of item"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
 
@@ -108,7 +85,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="Phone:"
-                android:textColor="@color/material_dynamic_neutral95"
                 android:textSize="20sp"
                 tools:ignore="HardcodedText" />
 
@@ -123,8 +99,6 @@
                 android:hint="Enter phone number"
                 android:inputType="phone"
                 android:minHeight="48dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
 
@@ -135,7 +109,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="Description"
-                android:textColor="@color/material_dynamic_neutral95"
                 android:textSize="20sp"
                 tools:ignore="HardcodedText" />
 
@@ -150,8 +123,6 @@
                 android:hint="Enter description of your item"
                 android:inputType="text"
                 android:minHeight="48dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
 
@@ -162,7 +133,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/date"
-                android:textColor="@color/material_dynamic_neutral95"
                 android:textSize="20sp" />
 
             <EditText
@@ -176,8 +146,6 @@
                 android:hint="Enter a date"
                 android:inputType="date"
                 android:minHeight="48dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp" />
 
             <TextView
@@ -187,7 +155,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/location"
-                android:textColor="@color/material_dynamic_neutral95"
                 android:textSize="20sp" />
 
             <EditText
@@ -201,8 +168,6 @@
                 android:hint="Enter a date"
                 android:inputType="text"
                 android:minHeight="48dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#4DFFFFFF"
                 android:textSize="15sp" />
 
             <com.google.android.material.button.MaterialButton
@@ -212,10 +177,10 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/material_dynamic_neutral_variant40"
                 android:text="SAVE"
-                android:textSize="30sp"
+                android:textSize="40sp"
                 app:cornerRadius="20dp"
+                android:textStyle="bold"
                 tools:ignore="VisualLintButtonSize" />
 
         </LinearLayout>
@@ -225,6 +190,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="80dp" />
+            app:layout_constraintGuide_begin="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -63,7 +63,6 @@ public class ShowLostAndFoundFragment extends Fragment {
 
         // Get UI elements
         itemLostAndFoundRecycler = view.findViewById(R.id.itemRecyclerView);
-        showItemsFragmentBackButton = view.findViewById(R.id.showItemsFragmentBackButton);
 
         // Create our recycler adapter and set it to our recycler view
         LostAndFoundAdapter lostAndFoundAdapter = new LostAndFoundAdapter(requireActivity(), currentLostItems);

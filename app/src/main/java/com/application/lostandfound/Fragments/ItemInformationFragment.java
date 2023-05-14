@@ -58,18 +58,6 @@ public class ItemInformationFragment extends Fragment {
         binding.itemDisplayFragmentPhone.setText("Contact: " + item.phoneNumber);
         binding.itemDisplayFragmentDescription.setText(item.description);
 
-        // Bind to back button
-        binding.itemDisplayBackButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fragmentManager.popBackStack();
-
-            }
-        });
-
         // Bind to the remove item button
         binding.itemDisplayRemoveItemButton.setOnClickListener(new View.OnClickListener() {
 

@@ -73,18 +73,6 @@ public class NewAdvertFragment extends Fragment {
             }
         });
 
-        // Bind to back button
-        binding.newAdvertBackButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fragmentManager.popBackStack();
-
-            }
-        });
-
         // Set an on click listener when save is pressed
         // This will grab all inputs and the lost/found state and create the respective data class to be saved (for this task, it will be in a local database)
         binding.saveNewAdvertButton.setOnClickListener(new View.OnClickListener() {

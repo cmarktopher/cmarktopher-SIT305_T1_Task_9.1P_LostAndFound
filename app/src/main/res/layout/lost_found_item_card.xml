@@ -4,14 +4,16 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Material3.CardView.Elevated"
+        app:cardElevation="2dp"
         android:id="@+id/itemCardView"
-        android:layout_width="411dp"
+        android:layout_width="400dp"
         android:layout_height="51dp"
-        app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp">
 
         <TextView
             android:id="@+id/itemNameView"
@@ -20,8 +22,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="Lost or Found Item Name"
-            android:textColor="#FFFFFF"
+            android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
