@@ -54,7 +54,7 @@ public class ItemInformationFragment extends Fragment {
         // Set the UI elements
         binding.itemDisplayFragmentNameView.setText(item.itemState + " " + item.name);
         binding.itemDisplayFragmentDate.setText("Date: " + item.date);
-        binding.itemDisplayFragmentLocation.setText("Location: " + item.location);
+        binding.itemDisplayFragmentLocation.setText("Latitude: " + String.valueOf(item.latitude) + ", Longitude: " + String.valueOf(item.longitude));
         binding.itemDisplayFragmentPhone.setText("Contact: " + item.phoneNumber);
         binding.itemDisplayFragmentDescription.setText(item.description);
 

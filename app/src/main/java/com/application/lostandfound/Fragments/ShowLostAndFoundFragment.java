@@ -82,18 +82,6 @@ public class ShowLostAndFoundFragment extends Fragment {
             lostAndFoundAdapter.notifyDataSetChanged();
         });
 
-        // Bind to back button
-        showItemsFragmentBackButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fragmentManager.popBackStack();
-
-            }
-        });
-
         return view;
     }
 }

@@ -46,6 +46,7 @@ public class HomeFragment extends Fragment {
         // Get UI elements
         Button newAdvertButton = view.findViewById(R.id.newAdvertButton);
         Button showItemsButton = view.findViewById(R.id.showItemsButton);
+        Button showOnMapButton = view.findViewById(R.id.showOnMapButton);
 
         // This will bring us to the NewAdvertFragment
         newAdvertButton.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +73,20 @@ public class HomeFragment extends Fragment {
                         .setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out)
                         .setReorderingAllowed(true)
                         .replace(R.id.coreFragmentContainer, ShowLostAndFoundFragment.newInstance(), null)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        showOnMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out)
+                        .setReorderingAllowed(true)
+                        .replace(R.id.coreFragmentContainer, new MapsFragment(), null)
                         .addToBackStack(null)
                         .commit();
             }

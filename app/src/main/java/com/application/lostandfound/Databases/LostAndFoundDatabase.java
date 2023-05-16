@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
  */
 
 
-@Database(entities = {LostFoundDataModel.class}, version = 2)
+@Database(entities = {LostFoundDataModel.class}, version = 3)
 public abstract class LostAndFoundDatabase extends RoomDatabase {
 
     // Keep track of the single instance of this database

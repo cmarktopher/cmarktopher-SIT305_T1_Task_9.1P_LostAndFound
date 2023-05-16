@@ -33,15 +33,19 @@ public class LostFoundDataModel {
     @ColumnInfo(name = "date")
     public String date;
 
-    @ColumnInfo(name = "location")
-    public String location;
+    @ColumnInfo(name = "latitude")
+    public double latitude;
 
-    public LostFoundDataModel(String itemState, String name, String phoneNumber, String description, String date, String location) {
+    @ColumnInfo(name = "longitude")
+    public double longitude;
+
+    public LostFoundDataModel(String itemState, String name, String phoneNumber, String description, String date,  double latitude, double longitude) {
         this.itemState = itemState;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.description = description;
         this.date = date;
-        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }

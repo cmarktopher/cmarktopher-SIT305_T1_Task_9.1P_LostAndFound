@@ -12,7 +12,8 @@
 
         <LinearLayout
             android:layout_width="400dp"
-            android:layout_height="619dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -157,30 +158,37 @@
                 android:text="@string/location"
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/locationInputEditTextView"
+
+            <fragment
+                android:id="@+id/placesAutoCompleteFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="15dp"
-                android:ems="10"
-                android:hint="Enter a date"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:textSize="15sp" />
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                tools:layout="@layout/place_autocomplete_fragment" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getCurrentLocationButton"
+                android:layout_width="250dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="GET CURRENT LOCATION"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"
+                tools:ignore="VisualLintButtonSize" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/saveNewAdvertButton"
                 android:layout_width="250dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:text="SAVE"
-                android:textSize="40sp"
-                app:cornerRadius="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                app:cornerRadius="20dp"
                 tools:ignore="VisualLintButtonSize" />
 
         </LinearLayout>
@@ -190,6 +198,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="16dp" />
+            app:layout_constraintGuide_begin="4dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
